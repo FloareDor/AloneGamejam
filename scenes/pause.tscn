@@ -1,0 +1,138 @@
+[gd_scene load_steps=8 format=3 uid="uid://dh8gryci35ogm"]
+
+[ext_resource type="Texture2D" uid="uid://dpc7smrj8gc7p" path="res://images/housepack/Assets_Haunted_House/Background_Wide.png" id="1_2045w"]
+[ext_resource type="Texture2D" uid="uid://braphbc8l5ikx" path="res://images/horror-prisoner-removebg-preview.png" id="2_fcici"]
+
+[sub_resource type="Animation" id="Animation_21dyd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_32pgq"]
+resource_name = "lighting"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1.18921),
+"update": 0,
+"values": [0.0, 16.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g74ra"]
+_data = {
+"RESET": SubResource("Animation_21dyd"),
+"lighting": SubResource("Animation_32pgq")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_bcn0j"]
+font_size = 86
+font_color = Color(0.713726, 0.729412, 0.74902, 1)
+
+[sub_resource type="FontFile" id="FontFile_u40e2"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+face_index = null
+embolden = null
+transform = null
+cache/0/86/0/ascent = 0.0
+cache/0/86/0/descent = 0.0
+cache/0/86/0/underline_position = 0.0
+cache/0/86/0/underline_thickness = 0.0
+cache/0/86/0/scale = 1.0
+cache/0/86/0/kerning_overrides/86/0 = Vector2(0, 0)
+cache/0/86/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/86/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundWide" type="Sprite2D" parent="."]
+process_mode = 2
+visible = false
+position = Vector2(562, 493)
+texture = ExtResource("1_2045w")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(600, 330)
+energy = 0.0
+texture = ExtResource("2_fcici")
+texture_scale = 1.67
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_g74ra")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 642.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 65.0
+offset_right = 902.0
+offset_bottom = 247.0
+theme_override_font_sizes/font_size = 36
+text = "Life Paused"
+label_settings = SubResource("LabelSettings_bcn0j")
+horizontal_alignment = 1
+
+[node name="Controls" type="Label" parent="."]
+layout_mode = 0
+offset_left = 52.9998
+offset_top = 542.0
+offset_right = 701.0
+offset_bottom = 691.0
+scale = Vector2(0.363, 0.363)
+theme_override_fonts/font = SubResource("FontFile_u40e2")
+theme_override_font_sizes/font_size = 1
+text = "Controls: t,arrows"
+label_settings = SubResource("LabelSettings_bcn0j")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 387.0
+offset_top = 280.0
+offset_right = 796.0
+offset_bottom = 469.0
+theme_override_colors/font_pressed_color = Color(0.215686, 0.215686, 0.215686, 1)
+theme_override_font_sizes/font_size = 36
+text = "Continue"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(572, 319)

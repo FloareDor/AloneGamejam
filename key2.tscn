@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5a3d6adc010k"]
+
+[ext_resource type="Script" path="res://Key2.gd" id="1_bdeb3"]
+[ext_resource type="Texture2D" uid="uid://c7pg7acyo72xf" path="res://images/housepack/Assets_Haunted_House/Key_2.png" id="2_qhjmj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7gql3"]
+radius = 118.106
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y3bqe"]
+radius = 38.0
+
+[node name="Key2" type="Node2D"]
+
+[node name="Key2" type="StaticBody2D" parent="."]
+script = ExtResource("1_bdeb3")
+
+[node name="Key2" type="Sprite2D" parent="Key2"]
+position = Vector2(4, -6)
+scale = Vector2(1.69355, 1.69355)
+texture = ExtResource("2_qhjmj")
+
+[node name="Area2D" type="Area2D" parent="Key2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Key2/Area2D"]
+shape = SubResource("CircleShape2D_7gql3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Key2"]
+shape = SubResource("CircleShape2D_y3bqe")
+
+[connection signal="body_entered" from="Key2/Area2D" to="Key2" method="_on_area_2d_body_entered"]

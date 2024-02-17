@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvf4pkptvytrf"]
+
+[ext_resource type="Script" path="res://staticGhost.gd" id="1_b88oe"]
+[ext_resource type="Texture2D" uid="uid://b5veyt68x6h1x" path="res://images/horror-prisoner.png" id="2_5aym8"]
+[ext_resource type="Texture2D" uid="uid://braphbc8l5ikx" path="res://images/horror-prisoner-removebg-preview.png" id="3_e61pe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i77hx"]
+size = Vector2(57, 74.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b5pr6"]
+radius = 370.85
+
+[sub_resource type="Animation" id="Animation_gbkeu"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ghost/PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ghost/PointLight2D:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4toq5"]
+resource_name = "horror-blink"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticGhost/PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 16.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ghost/PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 16.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ghost/PointLight2D:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ep5p0"]
+_data = {
+"RESET": SubResource("Animation_gbkeu"),
+"horror-blink": SubResource("Animation_4toq5")
+}
+
+[node name="StaticGhost" type="CharacterBody2D"]
+script = ExtResource("1_b88oe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0543893, 0.0543893)
+texture = ExtResource("2_5aym8")
+
+[node name="GhostCollision" type="CollisionShape2D" parent="."]
+light_mask = 2
+shape = SubResource("RectangleShape2D_i77hx")
+
+[node name="detectionArea" type="Area2D" parent="."]
+
+[node name="collisionDetection" type="CollisionShape2D" parent="detectionArea"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_b5pr6")
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ep5p0")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1, 1.00024)
+scale = Vector2(0.187071, 0.187071)
+energy = 16.0
+blend_mode = 2
+texture = ExtResource("3_e61pe")

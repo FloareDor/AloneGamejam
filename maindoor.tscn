@@ -1,0 +1,385 @@
+[gd_scene load_steps=18 format=3 uid="uid://dthp20l0jrj0n"]
+
+[ext_resource type="Script" path="res://door.gd" id="1_okp5c"]
+[ext_resource type="Texture2D" uid="uid://7xdv165kil03" path="res://images/doors/wooden/0.png" id="2_64nq7"]
+[ext_resource type="AudioStream" uid="uid://d2dlsyq14drme" path="res://audio/door-open.wav" id="2_bggvg"]
+[ext_resource type="Texture2D" uid="uid://ciei471bt1s2m" path="res://images/doors/wooden/3.png" id="3_flsmj"]
+[ext_resource type="Texture2D" uid="uid://bp185hyy4atne" path="res://images/doors/wooden/2.png" id="4_h6sn2"]
+[ext_resource type="Texture2D" uid="uid://dbj1lfmy8yxda" path="res://images/doors/wooden/1.png" id="5_txc3f"]
+[ext_resource type="Texture2D" uid="uid://cu658s3pffhoh" path="res://images/doors/wooden/-3.png" id="6_bbksv"]
+[ext_resource type="Texture2D" uid="uid://dys2mwh03pnps" path="res://images/doors/wooden/-2.png" id="7_4pvsy"]
+[ext_resource type="Texture2D" uid="uid://7di3ge44nnpk" path="res://images/doors/wooden/-1.png" id="8_5qmd0"]
+[ext_resource type="AudioStream" uid="uid://bp0b44l7fweag" path="res://audio/door-close.wav" id="10_774p7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_indcw"]
+size = Vector2(30, 65)
+
+[sub_resource type="Animation" id="Animation_rutoh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maindoor:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_64nq7")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("maindoor/Door/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-2.06791, -13.9115, 22.4884, -14.2049, 23.0054, 28.0474, -1.80942, 28.3408)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("maindoor/Door/CollisionPolygon2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12.9074, -7.42591)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("maindoor:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.894, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_410hv"]
+resource_name = "door-close-down"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maindoor:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_flsmj"), ExtResource("4_h6sn2"), ExtResource("5_txc3f"), ExtResource("2_64nq7")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("maindoor:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-13.2, 0), Vector2(-5.96, 0), Vector2(-0.877, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("maindoor/Door/CollisionPolygon2D:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-1.29245, -21.8338, 0.516968, -21.8338, 0.775455, 17.7777, 2.84336, 19.2448, 2.84336, 23.6461, 1.03394, 25.7, 0.775455, 35.6763, -1.29245, 35.6763, -1.29245, 25.9934, -3.36035, 24.2329, -3.36035, 19.2448, -1.55093, 17.7777), PackedVector2Array(-7.86781e-06, -16.5523, 9.82253, -6.28263, 10.8565, 15.7238, 11.115, 16.8975, 10.081, 17.4843, 10.081, 21.0053, 11.115, 22.179, 10.8565, 23.6461, 9.04706, 23.0592, 8.2716, 19.8316, 8.78858, 16.604, 9.82253, 15.7238, 10.3395, 31.5684, -0.258496, 22.4724), PackedVector2Array(-0.258496, -15.3786, 18.6111, -9.51023, 19.9036, 12.4962, 17.8357, 14.2567, 18.0941, 19.5382, 19.9036, 21.2987, 19.6451, 29.5145, 0.516968, 24.2329), PackedVector2Array(-2.06791, -13.9115, 22.4884, -14.2049, 23.0054, 28.0474, -1.80942, 28.3408)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("maindoor/Door/CollisionPolygon2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-12.9074, -7.42591), Vector2(-12.9074, -7.42591), Vector2(-12.9074, -7.42591), Vector2(-12.9074, -7.42591)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("doorClose")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_s7hlp"]
+resource_name = "door-close-up"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maindoor:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_bbksv"), ExtResource("7_4pvsy"), ExtResource("8_5qmd0"), ExtResource("2_64nq7")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("maindoor:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-13.463, 0), Vector2(-5.946, 0), Vector2(-1.306, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("maindoor/Door/CollisionPolygon2D:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-1.55093, -22.1272, 0.25848, -22.1272, 0.516968, 2.81335, 2.32638, 4.57386, 2.58487, 9.26856, 1.03394, 11.3225, 0.775455, 36.2631, -1.55093, 35.9697, -1.55093, 10.7357, -3.61884, 9.56198, -3.61884, 3.98703, -1.55093, 3.10677), PackedVector2Array(0.775455, -7.45631, 10.3395, -16.8457, 10.598, 6.33438, 12.6659, 7.80147, 12.9244, 12.2028, 11.115, 14.8435, 11.6319, 21.5922, 1.55092, 31.5684), PackedVector2Array(-0.258496, -9.21682, 19.1281, -14.2049, 18.8696, 7.80147, 20.679, 9.8554, 20.9375, 13.6698, 19.6451, 16.3106, 19.9036, 24.8198, -7.86781e-06, 30.6881), PackedVector2Array(-2.06791, -13.9115, 22.4884, -14.2049, 23.0054, 28.0474, -1.80942, 28.3408)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("maindoor/Door/CollisionPolygon2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-12.9074, -7.42591), Vector2(-12.9074, -7.42591), Vector2(-12.9074, -7.42591), Vector2(-12.9074, -7.42591)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("doorClose")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_13fqi"]
+resource_name = "door-open-down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maindoor:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_64nq7"), ExtResource("5_txc3f"), ExtResource("4_h6sn2"), ExtResource("3_flsmj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("maindoor:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-0.884, 0), Vector2(-6.083, 0), Vector2(-13.288, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("maindoor/Door/CollisionPolygon2D:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-2.06791, -13.9115, 22.4884, -14.2049, 23.0054, 28.0474, -1.80942, 28.3408), PackedVector2Array(-7.86781e-06, -15.0852, 18.8696, -9.51023, 19.9036, 12.4962, 18.3526, 14.2567, 18.0941, 18.0711, 19.3866, 21.0053, 20.679, 21.8856, 20.679, 30.3947, 0.516968, 24.8198, -7.86781e-06, 1.9331), PackedVector2Array(-7.86781e-06, -16.2589, 10.081, -6.28263, 10.598, 15.1369, 10.8565, 16.3106, 9.82253, 18.0711, 9.82253, 20.7119, 10.8565, 22.4724, 10.8565, 23.3527, 11.115, 33.3289, -0.258496, 22.179), PackedVector2Array(-1.29245, -21.8338, 0.25848, -21.8338, 0.516968, 17.7777, 2.32638, 19.2448, 2.32638, 23.9395, 0.775455, 25.9934, 0.775455, 35.6763, -1.29245, 35.9697, -1.29245, 25.9934, -3.36035, 24.2329, -3.36035, 19.2448, -1.55093, 18.0711)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("maindoor/Door/CollisionPolygon2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-12.9074, -7.42591), Vector2(-12.9074, -7.42591), Vector2(-12.9074, -7.42591), Vector2(-12.9074, -7.42591)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("doorOpen")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_uqgcp"]
+resource_name = "door-open-up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maindoor:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_64nq7"), ExtResource("8_5qmd0"), ExtResource("7_4pvsy"), ExtResource("6_bbksv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("maindoor/Door/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-2.06791, -13.9115, 22.4884, -14.2049, 23.0054, 28.0474, -1.80942, 28.3408), PackedVector2Array(-1.29245, -10.9773, 20.9375, -17.726, 21.196, 25.7, -1.29245, 32.4486), PackedVector2Array(-7.86781e-06, -7.74972, 0.25848, -7.74972, 10.8565, -16.8457, 11.115, 6.04096, 12.9244, 7.50805, 13.4414, 9.26856, 13.4414, 11.3225, 12.9244, 13.3764, 11.6319, 14.5501, 11.3735, 22.179, 1.80941, 31.5684), PackedVector2Array(-1.80942, -22.1272, 0.25848, -22.1272, 0.516968, 2.81335, 2.32638, 4.57386, 2.32638, 7.50805, 2.32638, 9.26856, 0.775455, 11.0291, 0.516968, 35.3828, -1.55093, 35.6763, -1.55093, 10.4422, -3.61884, 9.26856, -3.61884, 3.98703, -2.06791, 2.51993)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("maindoor/Door/CollisionPolygon2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-12.9074, -7.42591), Vector2(-12.9074, -7.42591), Vector2(-12.9074, -7.42591), Vector2(-12.9074, -7.42591)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("maindoor:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-0.419, 0), Vector2(-5.298, 0), Vector2(-13.528, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("doorOpen")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8qugq"]
+_data = {
+"RESET": SubResource("Animation_rutoh"),
+"door-close-down": SubResource("Animation_410hv"),
+"door-close-up": SubResource("Animation_s7hlp"),
+"door-open-down": SubResource("Animation_13fqi"),
+"door-open-up": SubResource("Animation_uqgcp")
+}
+
+[node name="maindoor" type="Node2D"]
+script = ExtResource("1_okp5c")
+
+[node name="doorOpen" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_bggvg")
+
+[node name="maindoor" type="Sprite2D" parent="."]
+position = Vector2(49, -1)
+scale = Vector2(3.17647, 3.17647)
+texture = ExtResource("2_64nq7")
+offset = Vector2(-0.894, 0)
+metadata/_edit_group_ = true
+
+[node name="Door" type="StaticBody2D" parent="maindoor"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="maindoor/Door"]
+position = Vector2(-12.9074, -7.42591)
+scale = Vector2(1.21791, 1.07292)
+polygon = PackedVector2Array(-2.06791, -13.9115, 22.4884, -14.2049, 23.0054, 28.0474, -1.80942, 28.3408)
+
+[node name="Area2D" type="Area2D" parent="maindoor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="maindoor/Area2D"]
+position = Vector2(-4.76837e-07, -1.57407)
+shape = SubResource("RectangleShape2D_indcw")
+
+[node name="button" type="Sprite2D" parent="."]
+position = Vector2(-21, 21)
+
+[node name="button" type="StaticBody2D" parent="button"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="button/button"]
+
+[node name="Area2D" type="Area2D" parent="button"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="button/Area2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8qugq")
+}
+
+[node name="doorClose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_774p7")
+
+[connection signal="body_entered" from="maindoor/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="maindoor/Area2D" to="." method="_on_area_2d_body_exited"]

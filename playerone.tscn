@@ -1,0 +1,442 @@
+[gd_scene load_steps=22 format=3 uid="uid://e43dhekagh11"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_e80nd"]
+[ext_resource type="Texture2D" uid="uid://dnucdmuyvfrik" path="res://images/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt/up.png" id="2_ix6lt"]
+[ext_resource type="Texture2D" uid="uid://boc6gb3ddsas8" path="res://images/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt/left.png" id="2_qqj64"]
+[ext_resource type="Texture2D" uid="uid://c004xflhk0rmn" path="res://images/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt/right.png" id="2_snwt7"]
+[ext_resource type="Texture2D" uid="uid://c8e8grd14yp71" path="res://images/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt/down.png" id="4_ed23j"]
+[ext_resource type="Texture2D" uid="uid://clvc01fcv82fv" path="res://images/light/circle.png" id="6_w1acg"]
+[ext_resource type="AudioStream" uid="uid://ikatayjj0a2p" path="res://audio/Horror SFX Free/Horror SFX Free/Character/Breathing_slow.wav" id="7_puw2m"]
+[ext_resource type="AudioStream" uid="uid://bspo54vs15tbo" path="res://audio/Horror SFX Free/Horror SFX Free/Character/Breathing_fast.wav" id="8_uodgi"]
+[ext_resource type="AudioStream" uid="uid://btp05ie37kdua" path="res://audio/Horror SFX Free/Horror SFX Free/Stingers and Spooky Triggers/Piano_assending_dissonent.wav" id="9_4o4lr"]
+[ext_resource type="AudioStream" uid="uid://c6fs78gjqod22" path="res://audio/footsteps/1.wav" id="11_y0wkp"]
+[ext_resource type="AudioStream" uid="uid://u4fjyjlcfikj" path="res://audio/footsteps/2.wav" id="12_fa76q"]
+[ext_resource type="AudioStream" uid="uid://kg5ynjmxurtn" path="res://audio/footsteps/3.wav" id="13_egr47"]
+
+[sub_resource type="Animation" id="Animation_7qpcv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_qqj64")]
+}
+
+[sub_resource type="Animation" id="Animation_a2g4m"]
+resource_name = "down"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_ed23j"), ExtResource("4_ed23j"), ExtResource("4_ed23j"), ExtResource("4_ed23j")]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("footstep1")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("footstep2")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("footstep3")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3ru1u"]
+resource_name = "idle"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ix6lt")]
+}
+
+[sub_resource type="Animation" id="Animation_gohsa"]
+resource_name = "left"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_qqj64"), ExtResource("2_qqj64"), ExtResource("2_qqj64"), ExtResource("2_qqj64")]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("footstep1")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("footstep2")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("footstep3")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1vxfb"]
+resource_name = "right"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_snwt7"), ExtResource("2_snwt7"), ExtResource("2_snwt7"), ExtResource("2_snwt7")]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("footstep1")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("footstep2")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("footstep3")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6ae6c"]
+resource_name = "up"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_ix6lt"), ExtResource("2_ix6lt"), ExtResource("2_ix6lt"), ExtResource("2_ix6lt")]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("footstep1")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("footstep2")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("footstep3")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rc0u4"]
+_data = {
+"RESET": SubResource("Animation_7qpcv"),
+"down": SubResource("Animation_a2g4m"),
+"idle": SubResource("Animation_3ru1u"),
+"left": SubResource("Animation_gohsa"),
+"right": SubResource("Animation_1vxfb"),
+"up": SubResource("Animation_6ae6c")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vjuct"]
+radius = 19.0
+height = 52.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b6p7v"]
+radius = 119.683
+
+[node name="playerone" type="CharacterBody2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_e80nd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rc0u4")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 7)
+shape = SubResource("CapsuleShape2D_vjuct")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 4.76837e-07)
+scale = Vector2(3.54211, 3.54211)
+texture = ExtResource("2_qqj64")
+vframes = 4
+frame = 2
+
+[node name="light" type="PointLight2D" parent="."]
+position = Vector2(-1, -1)
+scale = Vector2(1.73118, 1.73118)
+energy = 0.5
+blend_mode = 2
+range_z_min = -1019
+texture = ExtResource("6_w1acg")
+texture_scale = 2.34
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1, 2)
+zoom = Vector2(1.35, 1.35)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_b6p7v")
+
+[node name="slowBreath" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_puw2m")
+
+[node name="fastbreath" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_uodgi")
+
+[node name="ScentTimer" type="Timer" parent="."]
+
+[node name="keysound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_4o4lr")
+volume_db = -3.25
+panning_strength = 1.29
+
+[node name="footstep1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_y0wkp")
+volume_db = -0.464
+
+[node name="footstep2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_fa76q")
+
+[node name="footstep3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_egr47")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

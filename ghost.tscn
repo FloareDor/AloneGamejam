@@ -1,0 +1,138 @@
+[gd_scene load_steps=12 format=3 uid="uid://dx6s5a4ma17q0"]
+
+[ext_resource type="Script" path="res://Ghost.gd" id="1_5qvql"]
+[ext_resource type="Texture2D" uid="uid://b5veyt68x6h1x" path="res://images/horror-prisoner.png" id="2_x6d81"]
+[ext_resource type="Texture2D" uid="uid://braphbc8l5ikx" path="res://images/horror-prisoner-removebg-preview.png" id="3_ldujc"]
+[ext_resource type="AudioStream" uid="uid://dur0r14nhj2va" path="res://audio/Horror SFX Free/Horror SFX Free/Ambient/Scream.wav" id="4_5tdru"]
+[ext_resource type="AudioStream" uid="uid://cdy8842r3et8g" path="res://audio/Horror SFX Free/Horror SFX Free/Monsters & Ghosts/Ghost chior.wav" id="5_pmck4"]
+[ext_resource type="AudioStream" uid="uid://bspo54vs15tbo" path="res://audio/Horror SFX Free/Horror SFX Free/Character/Breathing_fast.wav" id="6_hvstd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhvje"]
+size = Vector2(57, 74.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u1n3l"]
+radius = 370.85
+
+[sub_resource type="Animation" id="Animation_gbkeu"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ghost/PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ghost/PointLight2D:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4toq5"]
+resource_name = "horror-blink"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticGhost/PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 16.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ghost/PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 16.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ghost/PointLight2D:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ep5p0"]
+_data = {
+"RESET": SubResource("Animation_gbkeu"),
+"horror-blink": SubResource("Animation_4toq5")
+}
+
+[node name="Ghost" type="CharacterBody2D"]
+position = Vector2(2, 30)
+script = ExtResource("1_5qvql")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.0543893, 0.0543893)
+texture = ExtResource("2_x6d81")
+
+[node name="GhostCollision" type="CollisionShape2D" parent="."]
+light_mask = 2
+shape = SubResource("RectangleShape2D_nhvje")
+
+[node name="detectionArea" type="Area2D" parent="."]
+
+[node name="collisionDetection" type="CollisionShape2D" parent="detectionArea"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_u1n3l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ep5p0")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1, 1.00024)
+scale = Vector2(0.187071, 0.187071)
+energy = 0.0
+blend_mode = 2
+texture = ExtResource("3_ldujc")
+
+[node name="Scream" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5tdru")
+volume_db = -15.321
+
+[node name="Choir" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_pmck4")
+volume_db = -3.25
+
+[node name="fastbreath" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_hvstd")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[connection signal="body_entered" from="detectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detectionArea" to="." method="_on_detection_area_body_exited"]

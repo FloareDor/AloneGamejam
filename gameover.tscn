@@ -1,0 +1,129 @@
+[gd_scene load_steps=12 format=3 uid="uid://boj4eupdlfuna"]
+
+[ext_resource type="Texture2D" uid="uid://dpc7smrj8gc7p" path="res://images/housepack/Assets_Haunted_House/Background_Wide.png" id="1_qiaeq"]
+[ext_resource type="Texture2D" uid="uid://b3vyxwy61jdwd" path="res://images/gpt/bg-white.png" id="2_x5cbm"]
+[ext_resource type="Texture2D" uid="uid://braphbc8l5ikx" path="res://images/horror-prisoner-removebg-preview.png" id="3_qy4y1"]
+[ext_resource type="Script" path="res://scenes/PointLight2D.gd" id="4_net7e"]
+[ext_resource type="Script" path="res://scenes/Button.gd" id="5_dprx4"]
+[ext_resource type="AudioStream" uid="uid://dur0r14nhj2va" path="res://audio/Horror SFX Free/Horror SFX Free/Ambient/Scream.wav" id="6_57cfq"]
+[ext_resource type="Script" path="res://scenes/quit.gd" id="7_q8ca1"]
+
+[sub_resource type="Animation" id="Animation_21dyd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_32pgq"]
+resource_name = "lighting"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1.18921),
+"update": 0,
+"values": [0.0, 16.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g74ra"]
+_data = {
+"RESET": SubResource("Animation_21dyd"),
+"lighting": SubResource("Animation_32pgq")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_bcn0j"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundWide" type="Sprite2D" parent="."]
+position = Vector2(562, 493)
+texture = ExtResource("1_qiaeq")
+
+[node name="Bg-white" type="Sprite2D" parent="."]
+position = Vector2(575, -363)
+texture = ExtResource("2_x5cbm")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(600, 330)
+energy = 0.0
+texture = ExtResource("3_qy4y1")
+texture_scale = 1.67
+script = ExtResource("4_net7e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_g74ra")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 642.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 83.0
+offset_right = 824.0
+offset_bottom = 265.0
+theme_override_font_sizes/font_size = 36
+text = "It was you all along... 
+You were alone. You are alone. You shall always be alone.
+
+                                                                                                - You"
+label_settings = SubResource("LabelSettings_bcn0j")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 387.0
+offset_top = 280.0
+offset_right = 796.0
+offset_bottom = 469.0
+theme_override_colors/font_pressed_color = Color(0.215686, 0.215686, 0.215686, 1)
+theme_override_font_sizes/font_size = 36
+text = "Try Again? But why?"
+script = ExtResource("5_dprx4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(572, 319)
+
+[node name="Scream" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_57cfq")
+volume_db = -15.321
+
+[node name="quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 497.0
+offset_right = 687.0
+offset_bottom = 599.0
+theme_override_colors/font_pressed_color = Color(0.215686, 0.215686, 0.215686, 1)
+theme_override_font_sizes/font_size = 36
+text = "Give Up"
+script = ExtResource("7_q8ca1")
+
+[connection signal="pressed" from="quit" to="quit" method="_on_pressed"]
