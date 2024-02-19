@@ -29,7 +29,6 @@ func _ready():
 	var initial_positions = [
 		Vector2(1240, -1492),
 		Vector2(2334, -1495),
-		Vector2(1774, -353),
 		Vector2(2736, -434),
 		Vector2(2923, -895),
 		Vector2(3078, 312)
@@ -74,7 +73,7 @@ func _on_detection_area_body_exited(body):
 	#		$breath.stop()
 			$AnimationPlayer.play("RESET")
 			state = GhostState.IDLE
-			player.get_node("light").texture_scale = 1.5
+			player.get_node("light").texture_scale = 1.65
 			get_node("PointLight2D").visible = false
 			
 
@@ -89,7 +88,7 @@ func update_idle_state(delta):
 	var direction = nav.get_next_path_position() - position
 	direction = direction.normalized()
 	
-	velocity = velocity.lerp(direction * speed * 0.75, acceleration * 6 * delta)
+	velocity = velocity.lerp(direction * speed * 0.5, acceleration * 5 * delta)
 	
 	move_and_slide()
 	
@@ -120,14 +119,18 @@ func update_idle_state(delta):
 	
 
 func update_chasing_state(delta):
-	
-	if player.get_node("light").texture_scale < 0.1:
+	print("player:", player_position)
+	print("ghost:", position)
+	var playerDied = false
+	if sqrt( (player_position.x - position.x)**2 + (player_position.y - position.y)**2 ) < 1:
+		playerDied = true
+	if player.get_node("light").texture_scale < 0.1 or playerDied:
 		$ambience.stop()
 		$Scream.play()
 		get_viewport().set_input_as_handled()
 		get_tree().change_scene_to_file("res://gameover.tscn")
 	
-	if player.get_node("light").texture_scale < 0.33:
+	if player.get_node("light").texture_scale < 0.5:
 		$Scream.play()
 		
 	nav.target_position = player_position
@@ -135,7 +138,7 @@ func update_chasing_state(delta):
 	var direction = nav.get_next_path_position() - position
 	direction = direction.normalized()
 	
-	velocity = velocity.lerp(direction * speed, acceleration * delta)
+	velocity = velocity.lerp(direction * speed * 1.33, (acceleration+40) * delta)
 	
 	move_and_slide()
 

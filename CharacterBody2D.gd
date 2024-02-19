@@ -12,6 +12,11 @@ var keysCollected = 0
 const keyGoal = 4
 
 var runDuration = 0
+
+var showed_what_msg = false
+
+func _onready():
+	get_node("what").visible = false
 	
 func _physics_process(delta):
 	
@@ -85,3 +90,16 @@ func _on_area_2d_body_entered(body):
 	elif body.name == "Key2":
 		get_node("light").texture_scale = 2.8
 	pass # Replace with function body.
+
+
+func _on_what_body_entered(body):
+	if body.name == "playerone":
+		$tone.play()
+		if not showed_what_msg:
+			get_node("what").visible = true
+			showed_what_msg = true
+
+
+func _on_what_body_exited(body):
+	if body.name == "playerone":
+		get_node("what").visible = false

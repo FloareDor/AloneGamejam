@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://disne8mtbcp28"]
+
+[ext_resource type="Texture2D" uid="uid://dl4btw1b5f3s1" path="res://images/mobile/left.png" id="1_76vej"]
+[ext_resource type="Texture2D" uid="uid://dixwyxuqy87j4" path="res://images/mobile/right.png" id="2_flnuu"]
+[ext_resource type="Texture2D" uid="uid://chrvcscf4sdnv" path="res://images/mobile/up.png" id="3_awj48"]
+[ext_resource type="Texture2D" uid="uid://cvr1rru18mn7u" path="res://images/mobile/down.png" id="4_ed4sw"]
+[ext_resource type="Texture2D" uid="uid://cmn2tx7yim3c2" path="res://images/mobile/door.png" id="5_dnjgo"]
+[ext_resource type="Texture2D" uid="uid://deegnj24dxoiw" path="res://images/mobile/pause.png" id="6_aq008"]
+
+[node name="MobileControls" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="left" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.733333)
+position = Vector2(826, 1769)
+scale = Vector2(1.616, 1.616)
+texture_normal = ExtResource("1_76vej")
+passby_press = true
+action = "ui_left"
+
+[node name="right" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.733333)
+position = Vector2(1254, 1748)
+scale = Vector2(1.616, 1.616)
+texture_normal = ExtResource("2_flnuu")
+passby_press = true
+action = "ui_right"
+
+[node name="up" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.733333)
+position = Vector2(1126, 1455)
+rotation = 0.0575959
+scale = Vector2(1.61959, 1.62393)
+texture_normal = ExtResource("3_awj48")
+passby_press = true
+action = "ui_up"
+
+[node name="down" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.733333)
+position = Vector2(1149, 1845)
+scale = Vector2(1.14998, 1.14998)
+texture_normal = ExtResource("4_ed4sw")
+passby_press = true
+action = "ui_down"
+
+[node name="door-open" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.733333)
+position = Vector2(2480, 1455)
+scale = Vector2(4.41, 4.41)
+texture_normal = ExtResource("5_dnjgo")
+passby_press = true
+action = "t"
+
+[node name="pause" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.733333)
+position = Vector2(1880, 1852)
+scale = Vector2(1.56311, 1.56311)
+texture_normal = ExtResource("6_aq008")
+action = "pause"

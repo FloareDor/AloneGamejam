@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4fco3j7hsxoq"]
+[gd_scene load_steps=10 format=3 uid="uid://d4fco3j7hsxoq"]
 
 [ext_resource type="Texture2D" uid="uid://cf4b8bv4eeovj" path="res://images/housepack/Assets_Haunted_House/Lamp_Stand.png" id="1_a0an2"]
 [ext_resource type="Script" path="res://LampStand.gd" id="2_46bg2"]
 [ext_resource type="Texture2D" uid="uid://clvc01fcv82fv" path="res://images/light/circle.png" id="3_kru82"]
 [ext_resource type="AudioStream" uid="uid://d3eirqxlc6y5y" path="res://scenes/Light Flicker Sound Effect.wav" id="4_8jvuc"]
+[ext_resource type="AudioStream" uid="uid://brhjkmjqpt3a7" path="res://audio/Horror SFX Free/Horror SFX Free/Stingers and Spooky Triggers/Piano_crescendo.wav" id="5_vwp63"]
 
 [sub_resource type="Animation" id="Animation_1l6ar"]
 length = 0.001
@@ -57,6 +58,9 @@ _data = {
 "flicker": SubResource("Animation_rfdro")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6n3f1"]
+radius = 197.525
+
 [node name="LampStand" type="Sprite2D"]
 position = Vector2(7, -9)
 scale = Vector2(0.787235, 0.56963)
@@ -82,3 +86,13 @@ libraries = {
 stream = ExtResource("4_8jvuc")
 volume_db = 13.0
 autoplay = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6n3f1")
+
+[node name="crescendo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_vwp63")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -9,3 +9,6 @@ tiles/
 images/
 player/
 audio/
+android/
+exports/
+*.sh

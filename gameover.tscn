@@ -1,12 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://boj4eupdlfuna"]
+[gd_scene load_steps=17 format=3 uid="uid://boj4eupdlfuna"]
 
+[ext_resource type="Script" path="res://gameover.gd" id="1_6nd8g"]
 [ext_resource type="Texture2D" uid="uid://dpc7smrj8gc7p" path="res://images/housepack/Assets_Haunted_House/Background_Wide.png" id="1_qiaeq"]
 [ext_resource type="Texture2D" uid="uid://b3vyxwy61jdwd" path="res://images/gpt/bg-white.png" id="2_x5cbm"]
 [ext_resource type="Texture2D" uid="uid://braphbc8l5ikx" path="res://images/horror-prisoner-removebg-preview.png" id="3_qy4y1"]
+[ext_resource type="Texture2D" uid="uid://3f8vkdffa2m3" path="res://images/light/jumpscare.webp" id="3_xi4jg"]
 [ext_resource type="Script" path="res://scenes/PointLight2D.gd" id="4_net7e"]
 [ext_resource type="Script" path="res://scenes/Button.gd" id="5_dprx4"]
 [ext_resource type="AudioStream" uid="uid://dur0r14nhj2va" path="res://audio/Horror SFX Free/Horror SFX Free/Ambient/Scream.wav" id="6_57cfq"]
 [ext_resource type="Script" path="res://scenes/quit.gd" id="7_q8ca1"]
+[ext_resource type="AudioStream" uid="uid://cdy8842r3et8g" path="res://audio/Horror SFX Free/Horror SFX Free/Monsters & Ghosts/Ghost chior.wav" id="10_y3srq"]
+[ext_resource type="AudioStream" uid="uid://obik6dpobqph" path="res://audio/heartbeat.wav" id="11_vrwua"]
+[ext_resource type="AudioStream" uid="uid://w70654ew3q2h" path="res://audio/Horror SFX Free/Horror SFX Free/Stingers and Spooky Triggers/Piano_drone_low_sustained_2.wav" id="12_4qjsj"]
 
 [sub_resource type="Animation" id="Animation_21dyd"]
 length = 0.001
@@ -47,6 +52,9 @@ _data = {
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_bcn0j"]
+line_spacing = 36.197
+font_size = 29
+font_color = Color(0.827451, 0, 0.0235294, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -55,6 +63,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6nd8g")
 
 [node name="BackgroundWide" type="Sprite2D" parent="."]
 position = Vector2(562, 493)
@@ -63,6 +72,11 @@ texture = ExtResource("1_qiaeq")
 [node name="Bg-white" type="Sprite2D" parent="."]
 position = Vector2(575, -363)
 texture = ExtResource("2_x5cbm")
+
+[node name="Jumpscare" type="Sprite2D" parent="."]
+position = Vector2(574, 485)
+scale = Vector2(1.92188, 1.92188)
+texture = ExtResource("3_xi4jg")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(600, 330)
@@ -85,10 +99,11 @@ offset_bottom = 642.0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 380.0
-offset_top = 83.0
-offset_right = 824.0
-offset_bottom = 265.0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 1156.0
+offset_bottom = 378.0
+theme_override_colors/font_color = Color(0.666667, 0.2, 0.203922, 1)
 theme_override_font_sizes/font_size = 36
 text = "It was you all along... 
 You were alone. You are alone. You shall always be alone.
@@ -113,7 +128,6 @@ position = Vector2(572, 319)
 
 [node name="Scream" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_57cfq")
-volume_db = -15.321
 
 [node name="quit" type="Button" parent="."]
 layout_mode = 0
@@ -125,5 +139,17 @@ theme_override_colors/font_pressed_color = Color(0.215686, 0.215686, 0.215686, 1
 theme_override_font_sizes/font_size = 36
 text = "Give Up"
 script = ExtResource("7_q8ca1")
+
+[node name="Choir" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_y3srq")
+volume_db = -20.893
+
+[node name="heartbeat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_vrwua")
+max_distance = 15021.0
+attenuation = 1.07177
+
+[node name="piano" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_4qjsj")
 
 [connection signal="pressed" from="quit" to="quit" method="_on_pressed"]

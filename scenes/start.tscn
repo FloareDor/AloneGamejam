@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cojvi4a4fcxdj"]
+[gd_scene load_steps=12 format=3 uid="uid://cojvi4a4fcxdj"]
 
+[ext_resource type="Script" path="res://scenes/start.gd" id="1_ilbh7"]
 [ext_resource type="Texture2D" uid="uid://dpc7smrj8gc7p" path="res://images/housepack/Assets_Haunted_House/Background_Wide.png" id="1_mbau2"]
 [ext_resource type="Texture2D" uid="uid://braphbc8l5ikx" path="res://images/horror-prisoner-removebg-preview.png" id="2_mulk4"]
 [ext_resource type="Script" path="res://scenes/startButton.gd" id="3_u6aha"]
 [ext_resource type="Script" path="res://scenes/quit.gd" id="4_khji1"]
+[ext_resource type="AudioStream" uid="uid://c80q1ldvo3oik" path="res://audio/Horror SFX Free/Horror SFX Free/Ambient/Crying_moaning_ambience_3.wav" id="5_uitib"]
 
 [sub_resource type="Animation" id="Animation_21dyd"]
 length = 0.001
@@ -45,7 +47,7 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_bcn0j"]
 font_size = 86
-font_color = Color(0.713726, 0.729412, 0.74902, 1)
+font_color = Color(0.788235, 0.803922, 0.811765, 1)
 
 [sub_resource type="FontFile" id="FontFile_u40e2"]
 face_index = null
@@ -73,6 +75,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ilbh7")
 
 [node name="BackgroundWide" type="Sprite2D" parent="."]
 position = Vector2(562, 493)
@@ -98,12 +101,12 @@ offset_bottom = 642.0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 289.0
-offset_top = 65.0
-offset_right = 902.0
-offset_bottom = 247.0
+offset_left = 141.0
+offset_top = 63.0
+offset_right = 1030.0
+offset_bottom = 245.0
 theme_override_font_sizes/font_size = 36
-text = "Are you alone?"
+text = "Eclipse of the Solitary"
 label_settings = SubResource("LabelSettings_bcn0j")
 horizontal_alignment = 1
 
@@ -144,5 +147,8 @@ script = ExtResource("4_khji1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(572, 319)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_uitib")
 
 [connection signal="pressed" from="quit" to="quit" method="_on_pressed"]

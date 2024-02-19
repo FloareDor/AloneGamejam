@@ -1,15 +1,17 @@
-[gd_scene load_steps=39 format=3 uid="uid://dc0rxvlm1eiku"]
+[gd_scene load_steps=43 format=3 uid="uid://dc0rxvlm1eiku"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_j0vl6"]
 [ext_resource type="Script" path="res://Ghost.gd" id="3_ad6ko"]
+[ext_resource type="Texture2D" uid="uid://clvc01fcv82fv" path="res://images/light/circle.png" id="3_l6x21"]
 [ext_resource type="Texture2D" uid="uid://b5veyt68x6h1x" path="res://images/horror-prisoner.png" id="4_2k6tt"]
 [ext_resource type="Texture2D" uid="uid://braphbc8l5ikx" path="res://images/horror-prisoner-removebg-preview.png" id="5_balkt"]
 [ext_resource type="PackedScene" uid="uid://e43dhekagh11" path="res://playerone.tscn" id="6_6a3yk"]
-[ext_resource type="AudioStream" uid="uid://dur0r14nhj2va" path="res://audio/Horror SFX Free/Horror SFX Free/Ambient/Scream.wav" id="6_mxynl"]
+[ext_resource type="AudioStream" uid="uid://dvn0t8m3jpew8" path="res://audio/Horror SFX Free/Horror SFX Free/Monsters & Ghosts/Tone_Moaning_Deep_3.wav" id="6_fkntj"]
 [ext_resource type="AudioStream" uid="uid://cdy8842r3et8g" path="res://audio/Horror SFX Free/Horror SFX Free/Monsters & Ghosts/Ghost chior.wav" id="7_psa1s"]
 [ext_resource type="Texture2D" uid="uid://d1rulsl7m5b6w" path="res://Tiles/2dpixx_ccart_indoor_tileset/2dpixx_ccart_indoor_tiles.png" id="8_0dtgb"]
 [ext_resource type="AudioStream" uid="uid://bspo54vs15tbo" path="res://audio/Horror SFX Free/Horror SFX Free/Character/Breathing_fast.wav" id="8_t6xtf"]
 [ext_resource type="AudioStream" uid="uid://dicxqlxjbcaog" path="res://audio/ghost/riser.wav" id="9_gu7b5"]
+[ext_resource type="AudioStream" uid="uid://c8wmiqfp2c54o" path="res://audio/Horror SFX Free/Horror SFX Free/Ambient/Drone_doom.wav" id="10_4utun"]
 [ext_resource type="AudioStream" uid="uid://cun3tx81cug5a" path="res://audio/ghost/breath.wav" id="10_a8iku"]
 [ext_resource type="Texture2D" uid="uid://dpt07x7x4swpq" path="res://Tiles/Fantasy Interior Tiles/Fantasy Interior Tiles/Full.png" id="10_gmdoq"]
 [ext_resource type="PackedScene" uid="uid://n1kci4e1rwp2" path="res://map2.tscn" id="11_2nhk2"]
@@ -20,6 +22,11 @@
 [ext_resource type="PackedScene" uid="uid://b5a3d6adc010k" path="res://key2.tscn" id="17_81rq1"]
 [ext_resource type="PackedScene" uid="uid://dh8gryci35ogm" path="res://scenes/pause.tscn" id="18_tld8k"]
 [ext_resource type="Script" path="res://scenes/quit2.gd" id="19_xjyxg"]
+[ext_resource type="AudioStream" uid="uid://obik6dpobqph" path="res://audio/heartbeat.wav" id="22_3r42q"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oqtol"]
+radius = 399.0
+height = 1448.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mq26g"]
 vertices = PackedVector2Array(195, 1024, 703, 1589, -108, 1478, -195, 1448, -2099, 391, -2260, 415, -2250, 260, -2176, 247, -1732, 270, -1746, -254, -2301, -254, -2264, -675, -1779, -702, -1685, -527, -1705, -359, -1305, -362, -1615, -604, -1328, -626, -656, -1462, -594, -629, -1278, -863, -2600, 1612, -2604, 1279, -2126, 1306, 700, 1609, -2062, 1256, -2069, 1252, -178, -756, 410, -742, 437, -238, -178, -241, -185, -540, -192, -362, 171, 543, 441, 539, 424, 1000, 158, -137, 377, -133, 363, 82, 121, -32, 34, 106, -242, -540, -552, -352, -91, 102, -188, 102, -185, -46, -84, -90, -2318, 1010, -2321, 539, -2119, 539, -2112, 1010, -548, -231, -242, -234, -239, 200, -481, 203, -569, -1157, -518, -1176, -289, -1176, -283, -897, -421, -877, -548, -885, -1618, -1179, -1406, -1186, -1335, -856, 37, 210, 370, 227, 367, 422, 168, 442, -209, 280, -2274, -5, -2267, -143, -1746, -137, -2200, 106, -397, -735, -239, -725, -586, -593, 23, -103, -108, 176, -1282, -1136, -1265, -1455, -1668, 297, -1578, -201, -1356, -201, -488, 314, -185, 173, -2277, 85, -2079, 523, -1305, -268, -417, 1451)
@@ -9746,8 +9753,26 @@ cache/0/86/0/kerning_overrides/86/0 = Vector2(0, 0)
 position = Vector2(-3, 2)
 script = ExtResource("1_j0vl6")
 
+[node name="heartbeat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_3r42q")
+max_distance = 15021.0
+attenuation = 1.07177
+
 [node name="Map2" parent="." instance=ExtResource("11_2nhk2")]
 position = Vector2(598, -1661)
+
+[node name="what" type="Sprite2D" parent="Map2"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(1518, -670)
+texture = ExtResource("3_l6x21")
+
+[node name="what" type="Area2D" parent="Map2/what"]
+
+[node name="what" type="CollisionShape2D" parent="Map2/what/what"]
+position = Vector2(-537, 1845)
+rotation = -1.78722
+shape = SubResource("CapsuleShape2D_oqtol")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map2"]
 position = Vector2(2138, 1227)
@@ -9760,10 +9785,21 @@ color = Color(0, 0, 0, 1)
 position = Vector2(2075, 1046)
 metadata/_edit_group_ = true
 
+[node name="tone" type="AudioStreamPlayer2D" parent="playerone"]
+position = Vector2(-2075, -1046)
+stream = ExtResource("6_fkntj")
+volume_db = 2.786
+
 [node name="Area2D2" type="Area2D" parent="playerone"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerone/Area2D2"]
 shape = SubResource("CircleShape2D_84d5i")
+
+[node name="what" type="Label" parent="playerone"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "what's that sound..?"
 
 [node name="Ghost" type="CharacterBody2D" parent="."]
 position = Vector2(1869, -464)
@@ -9801,8 +9837,8 @@ blend_mode = 2
 texture = ExtResource("5_balkt")
 
 [node name="Scream" type="AudioStreamPlayer2D" parent="Ghost"]
-stream = ExtResource("6_mxynl")
-volume_db = -7.821
+stream = ExtResource("10_4utun")
+volume_db = -2.25
 
 [node name="Choir" type="AudioStreamPlayer2D" parent="Ghost"]
 stream = ExtResource("7_psa1s")
@@ -9866,6 +9902,7 @@ offset_left = 703.0
 offset_top = 331.0
 offset_right = 703.0
 offset_bottom = 331.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="CanvasLayer2/PauseMenu"]
 layout_mode = 0
@@ -9877,6 +9914,7 @@ theme_override_font_sizes/font_size = 36
 text = "Life Paused"
 label_settings = SubResource("LabelSettings_0tnve")
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Controls2" type="Label" parent="CanvasLayer2/PauseMenu"]
 layout_mode = 0
@@ -9890,6 +9928,7 @@ theme_override_font_sizes/font_size = 1
 text = "Controls: t,arrows"
 label_settings = SubResource("LabelSettings_0tnve")
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Continue" type="Button" parent="CanvasLayer2/PauseMenu"]
 layout_mode = 0
@@ -9900,6 +9939,7 @@ offset_bottom = 469.0
 theme_override_colors/font_pressed_color = Color(0.215686, 0.215686, 0.215686, 1)
 theme_override_font_sizes/font_size = 36
 text = "Continue"
+metadata/_edit_use_anchors_ = true
 
 [node name="Giveup" type="Button" parent="CanvasLayer2/PauseMenu"]
 layout_mode = 0
@@ -9911,6 +9951,7 @@ theme_override_colors/font_pressed_color = Color(0.215686, 0.215686, 0.215686, 1
 theme_override_font_sizes/font_size = 36
 text = "Give Up"
 script = ExtResource("19_xjyxg")
+metadata/_edit_use_anchors_ = true
 
 [node name="lbl" type="Label" parent="CanvasLayer2"]
 offset_left = 97.0
@@ -9921,7 +9962,11 @@ theme_override_colors/font_color = Color(0.52549, 0.207843, 0.101961, 1)
 theme_override_font_sizes/font_size = 28
 text = "hiii"
 script = ExtResource("16_nw5tb")
+metadata/_edit_use_anchors_ = true
 
+[connection signal="body_entered" from="Map2/what/what" to="." method="_on_what_body_entered"]
+[connection signal="body_entered" from="Map2/what/what" to="playerone" method="_on_what_body_entered"]
+[connection signal="body_exited" from="Map2/what/what" to="playerone" method="_on_what_body_exited"]
 [connection signal="body_entered" from="playerone/Area2D2" to="CanvasLayer2/lbl" method="_on_area_2d_2_body_entered"]
 [connection signal="body_entered" from="Ghost/detectionArea" to="Ghost" method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Ghost/detectionArea" to="Ghost" method="_on_detection_area_body_exited"]
